@@ -1,0 +1,12 @@
+-- queries.sql
+CREATE OR REPLACE TABLE YOUSSEF_TABLE (
+    ID INT,
+    NAME STRING,
+    CITY STRING
+);
+
+INSERT INTO YOUSSEF_TABLE (ID, NAME, CITY) VALUES 
+(1, 'Youssef', 'Cairo'),
+(2, 'Ahmed', 'Giza');
+
+SELECT * FROM YOUSSEF_TABLE;

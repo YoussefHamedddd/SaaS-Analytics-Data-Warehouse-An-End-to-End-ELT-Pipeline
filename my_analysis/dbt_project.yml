@@ -1,0 +1,20 @@
+# dbt project configuration (Keep comments in English)
+name: 'my_analysis'
+version: '1.0.0'
+config-version: 2
+
+# This name must match what you have in profiles.yml
+profile: 'my_saas_project' 
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+
+models:
+  my_analysis:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

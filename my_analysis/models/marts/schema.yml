@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: fact_subscriptions
+    description: "Financial subscriptions fact table"
+    columns:
+      - name: subscription_id
+        tests:
+          - unique
+          - not_null
+
+      - name: account_id
+        description: "Foreign key to dim_accounts"
+        tests:
+          - not_null
+          - relationships: 
+              to: ref('dim_accounts')
+              field: account_id
+
+  - name: fact_support_tickets
+    description: "Support interactions fact table"
+    columns:
+      - name: account_id
+        tests:
+          - relationships:
+              to: ref('dim_accounts')
+              field: account_id
+
+  - name: fact_feature_usage
+    description: "Product usage fact table"
+    columns:
+      - name: subscription_id
+        tests:
+          - relationships:
+              to: ref('fact_subscriptions')
+              field: subscription_id

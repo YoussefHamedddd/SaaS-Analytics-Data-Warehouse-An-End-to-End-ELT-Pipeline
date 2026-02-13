@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: saas_raw
+    database: "SAAS_SUBSCRIPTION"
+    schema: PUBLIC
+    tables:
+      - name: accounts
+      - name: churn_events
+      - name: feature_usage
+      - name: subscriptions
+      - name: support_tickets

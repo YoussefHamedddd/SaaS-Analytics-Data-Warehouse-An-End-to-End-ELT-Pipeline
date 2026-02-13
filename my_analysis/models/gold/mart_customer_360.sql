@@ -1,0 +1,49 @@
+{{ config(materialized='table') }}
+
+WITH accounts AS (
+    SELECT * FROM {{ ref('dim_accounts') }}
+),
+
+subs AS (
+    SELECT 
+        ACCOUNT_ID, 
+        SUM(MRR_AMOUNT) AS TOTAL_MRR,
+        MAX(PLAN_TIER) AS CURRENT_PLAN
+    FROM {{ ref('fact_subscriptions') }}
+    GROUP BY 1
+),
+
+usage AS (
+    SELECT 
+        ACCOUNT_ID, 
+        SUM(USAGE_COUNT) AS TOTAL_USAGE_EVENTS,
+        COUNT(DISTINCT FEATURE_NAME) AS UNIQUE_FEATURES_USED
+    FROM {{ ref('fact_feature_usage') }}
+    GROUP BY 1
+),
+
+tickets AS (
+    SELECT 
+        ACCOUNT_ID, 
+        COUNT(TICKET_ID) AS TOTAL_TICKETS,
+        AVG(SATISFACTION_SCORE) AS AVG_SATISFACTION
+    FROM {{ ref('fact_support_tickets') }}
+    GROUP BY 1
+)
+
+SELECT
+    a.ACCOUNT_ID,
+    a.ACCOUNT_NAME,
+    a.COUNTRY,
+    a.ACCOUNT_SEGMENT,
+    COALESCE(s.TOTAL_MRR, 0) AS REVENUE_LIFETIME,
+    s.CURRENT_PLAN,
+    COALESCE(u.TOTAL_USAGE_EVENTS, 0) AS ACTIVITY_SCORE,
+    COALESCE(u.UNIQUE_FEATURES_USED, 0) AS FEATURE_ADOPTION_RATE,
+    COALESCE(t.TOTAL_TICKETS, 0) AS SUPPORT_INTERACTIONS,
+    t.AVG_SATISFACTION,
+    a.CHURN_FLAG 
+FROM accounts a
+LEFT JOIN subs s ON a.ACCOUNT_ID = s.ACCOUNT_ID
+LEFT JOIN usage u ON a.ACCOUNT_ID = u.ACCOUNT_ID
+LEFT JOIN tickets t ON a.ACCOUNT_ID = t.ACCOUNT_ID
