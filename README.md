@@ -49,7 +49,7 @@ The project calculates critical SaaS KPIs, including:
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 1.  **Clone the Repository:**
     ```bash
@@ -71,3 +71,6 @@ This project was a deep dive into the realities of managing a **Cloud Data Wareh
 
 ---
 
+##  Dataset Source
+* **Dataset Name:** SaaS Subscription & Churn Analytics Dataset
+* **Source:** [Kaggle - Rivalytics](https://www.kaggle.com/datasets/rivalytics/saas-subscription-and-churn-analytics-dataset)
