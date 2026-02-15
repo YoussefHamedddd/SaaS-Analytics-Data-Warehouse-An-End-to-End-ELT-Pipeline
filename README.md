@@ -8,8 +8,7 @@ A fully automated Data Engineering project designed to transform raw SaaS subscr
 
 The pipeline follows the **ELT (Extract, Load, Transform)** pattern, leveraging the power of cloud computing to handle data transformations directly within the warehouse.
 
-![Project Design](<img width="1606" height="566" alt="image" src="https://github.com/user-attachments/assets/ed1b2fc8-4fca-495a-a2cf-bd7b98cd04e0" />
-)
+![Project Design](https://github.com/YoussefHamedddd/SaaS-Analytics-Data-Warehouse-An-End-to-End-ELT-Pipeline/blob/main/docs/Project%20Design.png?raw=true)
 *1. End-to-End Architecture Flow*
 
 ### Key Components:
