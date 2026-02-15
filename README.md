@@ -1,4 +1,5 @@
-# Modern SaaS Analytics Data Warehouse (End-to-End ELT)
+# Modern SaaS Analytics Data Warehouse 
+# (End-to-End ELT)
 
 A fully automated Data Engineering project designed to transform raw SaaS subscription data into actionable business insights. This project implements a modern ELT pipeline using **Airflow**, **Snowflake**, and **dbt**, all containerized with **Docker**.
 
